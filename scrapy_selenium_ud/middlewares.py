@@ -30,16 +30,18 @@ class SeleniumMiddleware:
         command_executor: str
             Selenium remote server endpoint
         """
+        import undetectable_chromedriver_mod as uc
+        uc.install()
 
         webdriver_base_path = f'selenium.webdriver.{driver_name}'
 
-        driver_klass_module = import_module(f'{webdriver_base_path}.webdriver')
-        driver_klass = getattr(driver_klass_module, 'WebDriver')
+        driver_class_module = import_module(f'{webdriver_base_path}.webdriver')
+        driver_class = getattr(driver_class_module, 'WebDriver')
 
         driver_options_module = import_module(f'{webdriver_base_path}.options')
-        driver_options_klass = getattr(driver_options_module, 'Options')
+        driver_options_class = getattr(driver_options_module, 'Options')
 
-        driver_options = driver_options_klass()
+        driver_options = driver_options_class()
 
         if browser_executable_path:
             driver_options.binary_location = browser_executable_path
@@ -57,7 +59,7 @@ class SeleniumMiddleware:
                 'executable_path': driver_executable_path,
                 f'{driver_name}_options': driver_options
             }
-            self.driver = driver_klass(**driver_kwargs)
+            self.driver = driver_class(**driver_kwargs)
         # remote driver
         elif command_executor is not None:
             from selenium import webdriver
