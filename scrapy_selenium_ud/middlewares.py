@@ -5,8 +5,9 @@ from importlib import import_module
 from scrapy import signals
 from scrapy.exceptions import NotConfigured
 from scrapy.http import HtmlResponse
+import undetectable_chromedriver as uc
+uc.install()
 from selenium.webdriver.support.ui import WebDriverWait
-
 from .http import SeleniumRequest
 
 
@@ -30,8 +31,6 @@ class SeleniumMiddleware:
         command_executor: str
             Selenium remote server endpoint
         """
-        import undetectable_chromedriver_mod as uc
-        uc.install()
 
         webdriver_base_path = f'selenium.webdriver.{driver_name}'
 
