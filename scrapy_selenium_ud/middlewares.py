@@ -5,7 +5,7 @@ from importlib import import_module
 from scrapy import signals
 from scrapy.exceptions import NotConfigured
 from scrapy.http import HtmlResponse
-import undetectable_chromedriver as uc
+import undetected_chromedriver as uc
 uc.install()
 from selenium.webdriver.support.ui import WebDriverWait
 from .http import SeleniumRequest
