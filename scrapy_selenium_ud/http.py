@@ -3,12 +3,11 @@
 from scrapy import Request
 
 
-class SeleniumRequest(Request):
+class SeleniumRequestUc(Request):
     """Scrapy ``Request`` subclass providing additional arguments"""
 
     def __init__(self, wait_time=None, wait_until=None, screenshot=False, script=None, *args, **kwargs):
         """Initialize a new selenium request
-
         Parameters
         ----------
         wait_time: int
@@ -21,7 +20,6 @@ class SeleniumRequest(Request):
             will be returned in the response "meta" attribute.
         script: str
             JavaScript code to execute.
-
         """
 
         self.wait_time = wait_time
